@@ -17,21 +17,19 @@ import { CSSProperties } from "react";
 import { Interpolation } from "styled-components";
 type RequiredCSSProperties = Required<CSSProperties>;
 type WithCSSProp<T={}> = T & { $css?: Interpolation<Omit<T, "$css">> };
-interface StyledComponentProps<
-    FunctionalProps,
-    StyleProps,
-    _StyleProps = {
-        [
-            K in `$${Exclude<keyof StyleProps, symbol>}`
-        ]: K extends `$${infer S}` ?
-            StyleProps[S & keyof StyleProps]
-        : never;
-    }
-> {
+
+type StyledComponentPropsKeyInfer<P> = P extends `$${infer K}` ? K : P;
+interface StyledComponentProps<FunctionalProps, StyleProps, _StyleProps = {
+    [K in keyof StyleProps as `$${StyledComponentPropsKeyInfer<Exclude<K, symbol>>}`]: 
+    StyleProps[K]
+}> {
     functional: FunctionalProps;
     style: _StyleProps;
     all: FunctionalProps & _StyleProps;
 }
+type StyledComponentPropsWithCSS<FunctionalProps, StyleProps> = StyledComponentProps<FunctionalProps, StyleProps> & {
+    "style": WithCSSProp<StyledComponentProps<FunctionalProps, StyleProps>["style"]>;
+};
 ```
 
 ## Types
@@ -45,6 +43,9 @@ A type that represents an object with a `$css` property that can be used to add 
 
 ### StyledComponentProps
 A type that represents the props of a styled component. The type parameter `FunctionalProps` is the type of the props the component itself takes and `StyleProps` is the type of the props that are used to style the component and therefore won't be passed to the underlying component (indicated by adding a "$" prefix to the property name). Do not specify `_StyleProps` as it is internal and calculated automatically. Props that already have a "$" prefix will be left with the same name: no additional "$" will be added.
+
+### StyledComponentPropsWithCSS
+A variant of StyledComponentProps that includes the `$css` property as a styled prop. This is a little more complicated than it first seems, so that's why it's a separate type.
 
 ## Functions
 The following functions are available in the library:
