@@ -22,8 +22,8 @@
   },
   "peerDependencies": {
     "@ptolemy2002/bs-utils": "^1.0.0",
-    "styled-components": "^6.1.13",
-    "polished": "^4.3.1"
+    "polished": "^4.3.1",
+    "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",

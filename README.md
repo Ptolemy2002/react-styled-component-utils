@@ -44,7 +44,7 @@ A type that represents the same as React's `CSSProperties` type, but with all pr
 A type that represents an object with a `$css` property that can be used to add additional styles to a styled component instance without creating a brand new styled component. The type parameter `T` is the type of the styled component's props.
 
 ### StyledComponentProps
-A type that represents the props of a styled component. The type parameter `FunctionalProps` is the type of the props the component itself takes and `StyleProps` is the type of the props that are used to style the component and therefore won't be passed to the underlying component (indicated by adding a "$" prefix to the property name). Do not specify `_StyleProps` as it is internal and calculated automatically.
+A type that represents the props of a styled component. The type parameter `FunctionalProps` is the type of the props the component itself takes and `StyleProps` is the type of the props that are used to style the component and therefore won't be passed to the underlying component (indicated by adding a "$" prefix to the property name). Do not specify `_StyleProps` as it is internal and calculated automatically. Props that already have a "$" prefix will be left with the same name: no additional "$" will be added.
 
 ## Functions
 The following functions are available in the library:

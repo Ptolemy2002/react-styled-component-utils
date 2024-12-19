@@ -184,14 +184,15 @@ export default styled(App)`
 
 type StyledComponentPropsTest = StyledComponentProps<{
   className: string;
-}, {
+}, WithCSSProp<{
   color: string,
   show: boolean
-}>;
+}>>;
 
 // eslint-disable-next-line
 const TestProps: StyledComponentPropsTest["all"] = {
   className: "test",
   $color: "red",
-  $show: true
+  $show: true,
+  $css: css`color: blue;`
 };

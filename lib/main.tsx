@@ -133,17 +133,12 @@ export function bsBreakpointSame(breakpoint: Breakpoint | number, content: Inter
     );
 }
 
-export interface StyledComponentProps<
-    FunctionalProps,
-    StyleProps,
-    _StyleProps = {
-        [
-            K in `$${Exclude<keyof StyleProps, symbol>}`
-        ]: K extends `$${infer S}` ?
-            StyleProps[S & keyof StyleProps]
-        : never;
-    }
-> {
+type KeyInfer<P> = P extends `$${infer K}` ? K : P;
+
+export interface StyledComponentProps<FunctionalProps, StyleProps, _StyleProps = {
+    [K in keyof StyleProps as `$${KeyInfer<Exclude<K, symbol>>}`]: 
+    StyleProps[K]
+}> {
     functional: FunctionalProps;
     style: _StyleProps;
     all: FunctionalProps & _StyleProps;
