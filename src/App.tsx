@@ -3,7 +3,8 @@ import {
   RequiredCSSProperties, paddingX, paddingY, marginX, marginY,
   allLinkPseudo, bsBreakpointMin, bsBreakpointMax,
   bsBreakpointSame,
-  WithCSSProp
+  WithCSSProp,
+  StyledComponentProps
 } from "@ptolemy2002/react-styled-component-utils";
 import styled, { css } from "styled-components";
 
@@ -180,3 +181,17 @@ export default styled(App)`
     `)}
   }
 `;
+
+type StyledComponentPropsTest = StyledComponentProps<{
+  className: string;
+}, {
+  color: string,
+  show: boolean
+}>;
+
+// eslint-disable-next-line
+const TestProps: StyledComponentPropsTest["all"] = {
+  className: "test",
+  $color: "red",
+  $show: true
+};

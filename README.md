@@ -17,6 +17,21 @@ import { CSSProperties } from "react";
 import { Interpolation } from "styled-components";
 type RequiredCSSProperties = Required<CSSProperties>;
 type WithCSSProp<T={}> = T & { $css?: Interpolation<Omit<T, "$css">> };
+interface StyledComponentProps<
+    FunctionalProps,
+    StyleProps,
+    _StyleProps = {
+        [
+            K in `$${Exclude<keyof StyleProps, symbol>}`
+        ]: K extends `$${infer S}` ?
+            StyleProps[S & keyof StyleProps]
+        : never;
+    }
+> {
+    functional: FunctionalProps;
+    style: _StyleProps;
+    all: FunctionalProps & _StyleProps;
+}
 ```
 
 ## Types
@@ -27,6 +42,9 @@ A type that represents the same as React's `CSSProperties` type, but with all pr
 
 ### WithCSSProp<T>
 A type that represents an object with a `$css` property that can be used to add additional styles to a styled component instance without creating a brand new styled component. The type parameter `T` is the type of the styled component's props.
+
+### StyledComponentProps
+A type that represents the props of a styled component. The type parameter `FunctionalProps` is the type of the props the component itself takes and `StyleProps` is the type of the props that are used to style the component and therefore won't be passed to the underlying component (indicated by adding a "$" prefix to the property name). Do not specify `_StyleProps` as it is internal and calculated automatically.
 
 ## Functions
 The following functions are available in the library:
