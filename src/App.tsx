@@ -4,7 +4,8 @@ import {
   allLinkPseudo, bsBreakpointMin, bsBreakpointMax,
   bsBreakpointSame,
   WithCSSProp,
-  StyledComponentProps
+  StyledComponentProps,
+  StyledComponentPropsWithCSS
 } from "@ptolemy2002/react-styled-component-utils";
 import styled, { css } from "styled-components";
 
@@ -182,12 +183,12 @@ export default styled(App)`
   }
 `;
 
-type StyledComponentPropsTest = StyledComponentProps<{
+type StyledComponentPropsTest = StyledComponentPropsWithCSS<{
   className: string;
-}, WithCSSProp<{
+}, {
   color: string,
   show: boolean
-}>>;
+}>;
 
 // eslint-disable-next-line
 const TestProps: StyledComponentPropsTest["all"] = {
