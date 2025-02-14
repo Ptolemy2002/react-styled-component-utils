@@ -144,4 +144,7 @@ export interface StyledComponentProps<FunctionalProps, StyleProps, _StyleProps =
     all: FunctionalProps & _StyleProps;
 }
 
-export type StyledComponentPropsWithCSS<FunctionalProps, StyleProps> = StyledComponentProps<FunctionalProps, WithCSSProp<StyleProps>>;
+export type StyledComponentPropsWithCSS<FunctionalProps, StyleProps> = StyledComponentProps<FunctionalProps, StyleProps> & {
+    "style": WithCSSProp<StyledComponentProps<FunctionalProps, StyleProps>["style"]>;
+    "all": WithCSSProp<StyledComponentProps<FunctionalProps, StyleProps>["all"]>;
+};
