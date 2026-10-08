@@ -20,14 +20,15 @@
     "release-minor": "bash ./scripts/release.sh minor",
     "release-major": "bash ./scripts/release.sh major"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@ptolemy2002/bs-utils": "^1.0.0",
-    "polished": "^4.3.1",
+    "polished": "^4.3.1"
+  },
+  "peerDependencies": {
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
-    "@ptolemy2002/bs-utils": "^1.0.0",
     "@types/babel__generator": "^7.6.8",
     "@types/babel__template": "^7.4.4",
     "@types/babel__traverse": "^7.20.6",
@@ -46,7 +47,6 @@
     "globals": "^15.9.0",
     "less": "^4.2.0",
     "path": "^0.12.7",
-    "polished": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "styled-components": "^6.1.13",

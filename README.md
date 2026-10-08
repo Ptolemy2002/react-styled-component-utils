@@ -182,9 +182,7 @@ A shorthand function for creating a media query that applies only when the viewp
 A `RuleSet` that can be used to apply the styles only when the viewport is at the specified Bootstrap breakpoint.
 
 ## Peer Dependencies
-- `@ptolemy2002/bs-utils^1.0.0`
 - `styled-components^6.1.13`
-- `polished^4.3.1`
 
 ## Commands
 The following commands exist in the project:
